@@ -1,0 +1,1369 @@
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>E-Commerce Website Using Bootstap 5</title>
+    <meta charset="UTF-8" />
+    <meta name="description" content="" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx"
+      crossorigin="anonymous"
+    />
+    <!-- Themify Icons -->
+    <link rel="stylesheet" href="assets/css/themify-icons.css" />
+
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap");
+
+      * {
+        margin: 0;
+        padding: 0;
+      }
+      :root {
+        /* Background Color */
+        --bg-danger: #f63440;
+        --bg-white: #fff;
+        --bg-light-white: #f5f5f5;
+
+        /* Text Color */
+        --primary-font: "Poppins", sans-serif;
+        --text-white: #fff;
+        --text-black: #121212;
+        --text-danger: #f63440;
+        --text-gray: #aaa;
+        --text-dark-gray: #777;
+      }
+      body {
+        font-family: var(--primary-font);
+        font-size: 1rem;
+        font-weight: 400;
+        line-height: 1.75rem;
+        background: var(--bg-white);
+        color: var(--text-black);
+        overflow-x: hidden;
+      }
+
+      /* Custom CSS */
+      a,
+      a:hover {
+        text-decoration: none;
+      }
+      p {
+        margin: 0;
+      }
+      .btn-danger {
+        background: var(--bg-danger);
+        border-color: var(--bg-danger);
+        padding: 0.8rem 1.5rem;
+        font-size: 1rem;
+        font-weight: 500;
+      }
+      .btn-danger:hover {
+        color: var(--text-danger);
+        background: transparent;
+      }
+
+      /* Navigation CSS */
+      #header .fixed-top {
+        box-shadow: 0 0.125rem 0.675rem rgb(0 0 0 / 5%);
+      }
+      #header .navbar-nav .nav-item .nav-link {
+        color: var(--text-black);
+        padding: 0.5rem 1rem;
+        text-align: center;
+      }
+      #header .navbar-nav .nav-item .nav-link:hover,
+      #header .navbar-nav .nav-item .nav-link.active {
+        color: var(--text-danger);
+      }
+      
+      #header .navbar-toggler:focus {
+        box-shadow: none;
+      }
+
+      /* Home CSS */
+      .home .home-banner-1,
+      .home .home-banner-2 {
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: 90% center;
+        min-height: 650px;
+        position: relative;
+      }
+      .home .home-banner-1 {
+        background-image: url("https://images.pexels.com/photos/12437389/pexels-photo-12437389.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load");
+      }
+      .home .home-banner-2 {
+        background-image: url("https://images.pexels.com/photos/10049163/pexels-photo-10049163.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load");
+      }
+      .home .home-banner .home-banner-text {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-110%, -50%);
+      }
+      .home .home-banner .home-banner-text h1 {
+        font-size: 6rem;
+      }
+      .home .carousel-indicators [data-bs-target] {
+        background-color: var(--bg-danger);
+        width: 2.5rem;
+        height: 0.313rem;
+      }
+      .home .carousel-control-next-icon,
+      .home .carousel-control-prev-icon {
+        background: transparent;
+      }
+      .home .slider-icon {
+        font-size: 3rem;
+        font-weight: 600;
+        color: var(--text-danger);
+      }
+      /* Offer CSS */
+      .offers {
+        padding-top: 8.75rem;
+      }
+      .offers .offer-box .offer-image::before {
+        position: absolute;
+        content: "";
+        top: 0;
+        left: -100%;
+        z-index: 2;
+        display: block;
+        width: 50%;
+        height: 100%;
+        background: -webkit-linear-gradient(
+          to right,
+          rgba(255, 255, 255, 0) 0%,
+          rgba(255, 255, 255, 0.3) 100%
+        );
+        background: linear-gradient(
+          to right,
+          rgba(255, 255, 255, 0) 0%,
+          rgba(255, 255, 255, 0.3) 100%
+        );
+        transform: skewX(-25deg);
+      }
+      .offers .offer-box .offer-image img {
+        transform: scale(1.02);
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+      .offers .offer-box:hover .offer-image::before {
+        animation: effect_shine 1s;
+      }
+      @keyframes effect_shine {
+        100% {
+          left: 150%;
+        }
+      }
+      .offers .offer-overlay::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.4);
+        z-index: 1;
+      }
+      .offers .offer-box .offer-info {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        z-index: 1;
+        transition: all 250ms ease-out;
+        justify-content: center;
+        align-items: center;
+      }
+      .offers .offer-box .offer-info .heading-bigger {
+        font-size: 4.375rem;
+        line-height: 1;
+        text-transform: uppercase;
+        font-weight: 400;
+        margin-bottom: 0;
+        color: var(--text-white);
+      }
+      .offers .offer-box .offer-info .offer-title-1 {
+        color: var(--text-white);
+        font-size: 1.125rem;
+        font-weight: 300;
+        margin-bottom: 0;
+        letter-spacing: 2px;
+      }
+      .offers .offer-box .offer-info .btn-outline-danger {
+        color: var(--text-white);
+        border-color: var(--bg-white);
+        transition: all 0.3s ease-in-out;
+      }
+      .offers .offer-box .offer-info .btn-outline-danger:hover {
+        border-color: var(--bg-danger);
+        background-color: var(--bg-danger);
+      }
+      /* Products CSS */
+      .products {
+        padding-top: 8.75rem;
+      }
+      .headline h2::before {
+        content: "";
+        width: 30%;
+        height: 0.125rem;
+        background-color: var(--bg-danger);
+        position: absolute;
+        bottom: 0;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        border-radius: 0.625rem;
+      }
+      .products a {
+        text-decoration: none;
+        color: var(--text-black);
+      }
+      .product-list .product-image img {
+        transition: all 500ms ease-in-out;
+        max-height: 400px;
+        width: 100%;
+        overflow: hidden;
+        object-fit: cover;
+      }
+      .product-list .product-image .product-image-secondary {
+        opacity: 0;
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: 0;
+        bottom: 0;
+      }
+      .product-list .product-image:hover .product-image-secondary {
+        opacity: 1;
+      }
+      .product-list .product-image .sale {
+        background: var(--bg-danger);
+        border-radius: 0.313rem;
+        color: var(--text-white);
+        font-size: 0.813rem;
+        letter-spacing: 0.125rem;
+        line-height: 1.563rem;
+        padding: 0.125rem 0.813rem;
+        text-transform: uppercase;
+        position: absolute;
+        left: 1rem;
+        top: 1.188rem;
+        z-index: 99;
+      }
+      .product-list .product-name h3 {
+        font-size: 1.125rem;
+        color: var(--text-black);
+        transition: all 0.3s ease 0s;
+      }
+      .product-list .product-name h3:hover {
+        color: var(--text-danger);
+      }
+      .product-list .product-name .amount {
+        color: var(--text-danger);
+        font-weight: 500;
+      }
+      .product-list .product-name .amount del {
+        color: var(--text-gray);
+      }
+      .product-list .product-name .ti-star {
+        color: var(--text-gray);
+      }
+      .product-list .product-name .ti-star.active {
+        color: var(--text-danger);
+      }
+      .product-list .product-name .add_to_Card {
+        background: transparent;
+        border: none;
+        font-size: 1.2rem;
+        font-weight: 500;
+        transition: all 0.3s ease 0s;
+      }
+      .product-list .product-name .add_to_Card:hover {
+        color: var(--text-danger);
+      }
+
+      .products .up_to_off {
+        position: relative;
+      }
+      .products .up_to_off::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.2);
+        z-index: 2;
+        cursor: pointer;
+        transition: 0.5s;
+      }
+      .products .up_to_off img {
+        transition: 0.5s;
+      }
+      .products .up_to_off:hover img {
+        transform: scale(1.1);
+      }
+      .products .up_to_content h2 {
+        color: var(--text-white);
+        font-size: 1.625rem;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        z-index: 3;
+      }
+
+      /* Special CSS */
+      .special {
+        padding: 6rem 0;
+        background: var(--bg-light-white);
+      }
+      .special .countdown-container {
+        padding-top: 4.375rem;
+      }
+      .special .countdown-container p {
+        color: var(--text-dark-gray);
+        font-weight: 300;
+        line-height: 1.875rem;
+      }
+      .special .countdown-container .countdown-counter {
+        display: block;
+        width: 100%;
+        margin: 0;
+        padding: 0;
+        margin-bottom: 1.875rem;
+      }
+      .special .countdown-container .countdown-counter li {
+        display: inline-block;
+        font-size: 0.875rem;
+        font-weight: bold;
+        text-align: center;
+        background: var(--bg-white);
+        border-radius: 0.313rem;
+        padding: 2rem 1rem;
+        width: 15%;
+        margin: 0 0.313rem;
+      }
+      .special .countdown-container .countdown-counter li span {
+        font-weight: 500;
+      }
+      .special .countdown-container .countdown-price del {
+        color: var(--text-gray);
+        font-size: 1rem;
+      }
+      .special .special-img span {
+        background: var(--bg-danger);
+        border-radius: 0.313rem;
+        color: var(--text-white);
+        font-size: 0.813rem;
+        letter-spacing: 0.125rem;
+        line-height: 1.563rem;
+        padding: 0.125rem 0.813rem;
+        text-transform: uppercase;
+        position: absolute;
+        left: 1rem;
+        top: 1.188rem;
+        z-index: 99;
+      }
+      /* Testimonial CSS */
+      .testimonial {
+        padding: 5rem 0 8rem;
+      }
+      .testimonial .testimonial-wrapper {
+        box-shadow: 0 0 0.563rem 0 rgb(0 0 0 / 5%);
+        background: var(--bg-white);
+        margin: auto;
+        padding: 1rem 5rem;
+        border: 0.063rem solid var(--bg-light-white);
+        border-radius: 0.625rem;
+      }
+      .testimonial .testimonial-wrapper img {
+        border-radius: 100%;
+        width: 5rem;
+        height: 5rem;
+        margin: 1.25rem auto;
+        object-fit: cover;
+        background-color: var(--bg-white);
+        border: 0.063rem solid var(--bg-light-white);
+      }
+
+      .testimonial .testimonial-wrapper span {
+        color: var(--text-gray);
+        font-size: 1rem;
+        text-transform: uppercase;
+        margin: 1rem 0;
+        display: block;
+      }
+      .testimonial .testimonial-wrapper p {
+        color: var(--text-gray);
+        font-size: 0.875rem;
+        font-weight: 300;
+      }
+      .testimonial .carousel-indicators [data-bs-target] {
+        background-color: var(--bg-danger);
+        width: 2.5rem;
+        height: 0.313rem;
+      }
+      .testimonial .carousel-control-next-icon,
+      .testimonial .carousel-control-prev-icon {
+        background: transparent;
+      }
+      .testimonial .carousel-indicators {
+        bottom: -3rem;
+      }
+      .testimonial .slider-icon {
+        font-size: 3rem;
+        font-weight: 600;
+        color: var(--text-danger);
+      }
+      .testimonial .carousel-control-prev {
+        left: -8.75rem;
+      }
+      .testimonial .carousel-control-next {
+        right: -8.75rem;
+      }
+
+      /* Contact CSS */
+      .contact {
+        padding: 4rem 0;
+        background-color: var(--bg-light-white);
+      }
+      .contact .info li p a {
+        font-size: 1rem;
+        display: inline-block;
+        margin: 0.75rem 0;
+        color: var(--text-black);
+      }
+      .contact .form-group {
+        margin-bottom: 1.5rem;
+      }
+      .contact .form-control {
+        height: 3.75rem;
+        padding: 0.375rem 1.1875rem;
+        border: none;
+        font-size: 1rem;
+        box-shadow: 0 0.1875rem 1.25rem 0 rgb(0 0 0 / 12%);
+      }
+      .contact .textarea {
+        width: 100%;
+        border-radius: 0.25rem;
+        padding: 0.75rem 1.1875rem;
+        border: none;
+        font-size: 1rem;
+        margin-top: 0.3125rem;
+        box-shadow: 0 0.1875rem 1.25rem 0 rgb(0 0 0 / 12%);
+      }
+      .contact .textarea:focus {
+        outline: none;
+        border: none;
+      }
+
+      /* Footer CSS */
+      .copyright {
+        background: var(--bg-danger);
+      }
+      .copyright p,
+      .copyright a {
+        color: var(--text-white);
+      }
+
+
+
+      @media (max-width: 1030px) {
+        /* Home CSS */
+        .home .home-banner-1,
+        .home .home-banner-2 {
+          background-position: 65% center;
+          min-height: 550px;
+        }
+        .home .home-banner .home-banner-text {
+          transform: translate(-80%, -50%);
+        }
+
+        /* Offer CSS */
+        .offers .offer-box .offer-info .heading-bigger {
+          font-size: 3rem;
+        }
+
+        /* Special CSS */
+        .special .countdown-container .countdown-counter li {
+          padding: 1.5rem 1rem;
+        }
+      }
+      @media (max-width: 991px) {
+        /* Home CSS */
+        .home .home-banner .home-banner-text {
+          transform: translate(-66%, -50%);
+        }
+
+        /* Special CSS */
+        .special .countdown-container {
+          padding-top: 1rem;
+          padding-bottom: 5rem;
+        }
+
+        /* Testimonial CSS */
+        .testimonial .carousel-control-prev {
+          left: -1.75rem;
+        }
+        .testimonial .carousel-control-next {
+          right: -1.75rem;
+        }
+      }
+      @media (max-width: 767px) {
+        /* Home CSS */
+        .home .home-banner-1,
+        .home .home-banner-2 {
+          background-position: 50% center;
+          min-height: 450px;
+        }
+        .home .home-banner .home-banner-text {
+          text-align: center;
+          width: 100%;
+          transform: translate(-50%, -50%);
+        }
+        .home .home-banner .home-banner-text h1 {
+          font-size: 3rem;
+        }
+        .home .home-banner .home-banner-text h2 {
+          font-size: 1.2rem;
+        }
+        .home .home-banner .home-banner-text .btn-danger {
+          padding: 0.5rem 1.5rem;
+        }
+        .home .slider-icon {
+          font-size: 2rem;
+        }
+
+        /* Product CSS */
+        .products .up_to_content h2 {
+          font-size: 0.75rem;
+        }
+
+        /* Special CSS */
+        .special {
+          padding: 4rem 0;
+        }
+        .special .countdown-container .countdown-counter li {
+          padding: 1rem;
+          width: 20%;
+        }
+
+        /* Testimonial CSS */
+        .testimonial .testimonial-wrapper {
+          padding: 1rem;
+        }
+        .testimonial .carousel-control-prev,
+        .testimonial .carousel-control-next {
+          display: none;
+        }
+      }
+
+      @media (max-width: 330px) {
+        /* Home CSS */
+        .home .home-banner .home-banner-text h2 {
+          font-size: 1rem;
+        }
+
+        /* Product CSS */
+        .products .up_to_content h2 {
+          font-size: 0.625rem;
+        }
+      }
+    </style>
+  </head>
+  <body data-bs-spy="scroll" data-bs-target=".navbar">
+    <!-- Navigation section -->
+    <section id="header">
+      <nav class="navbar navbar-expand-lg bg-white fixed-top">
+        <div class="container">
+          <a class="navbar-brand" href="#">
+            <!-- <img src="https://images.pexels.com/photos/4792350/pexels-photo-4792350.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load" class="img-fluid" /> -->
+          </a>
+          <button
+            class="navbar-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbarNav"
+            aria-controls="navbarNav"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+          >
+            <span class="navbar-toggler-icon"></span>
+            <!-- <span class="navbar-toggler-icon"></span> -->
+          </button>
+          <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-auto">
+              <li class="nav-item">
+                <a class="nav-link" aria-current="page" href="#home"
+                  >Home</a
+                >
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#products">Products</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#special">Special</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#testimonial">Testimonials</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#contact">Contact</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+    </section>
+
+    <!-- Home section -->
+    <section id="home" class="home pt-5 overflow-hidden">
+      <div
+        id="carouselExampleIndicators"
+        class="carousel slide"
+        data-bs-ride="carousel"
+      >
+        <div class="carousel-indicators">
+          <button
+            type="button"
+            data-bs-target="#carouselExampleIndicators"
+            data-bs-slide-to="0"
+            class="active"
+            aria-current="true"
+            aria-label="Slide 1"
+          ></button>
+          <button
+            type="button"
+            data-bs-target="#carouselExampleIndicators"
+            data-bs-slide-to="1"
+            aria-label="Slide 2"
+          ></button>
+        </div>
+        <div class="carousel-inner">
+          <div class="carousel-item active">
+            <div class="home-banner home-banner-1">
+              <div class="home-banner-text">
+                <h1>Women</h1>
+                <h2>52% Discount For This Season</h2>
+                <a href="#" class="btn btn-danger text-uppercase mt-4"
+                  >Our Products</a
+                >
+              </div>
+            </div>
+          </div>
+          <div class="carousel-item">
+            <div class="home-banner home-banner-2">
+              <div class="home-banner-text">
+                <h1>E-Shop</h1>
+                <h2>With Working Card & Pay Pal</h2>
+                <a href="#" class="btn btn-danger text-uppercase mt-4"
+                  >Our Products</a
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+        <button
+          class="carousel-control-prev"
+          type="button"
+          data-bs-target="#carouselExampleIndicators"
+          data-bs-slide="prev"
+        >
+          <span class="carousel-control-prev-icon" aria-hidden="true">
+            <span class="ti-angle-left slider-icon"></span>
+          </span>
+          <span class="visually-hidden">Previous</span>
+        </button>
+        <button
+          class="carousel-control-next"
+          type="button"
+          data-bs-target="#carouselExampleIndicators"
+          data-bs-slide="next"
+        >
+          <span class="carousel-control-next-icon" aria-hidden="true">
+            <span class="ti-angle-right slider-icon"></span>
+          </span>
+          <span class="visually-hidden">Next</span>
+        </button>
+      </div>
+
+      <!-- Offer section -->
+      <div class="offers">
+        <div class="container">
+          <div class="row">
+            <!-- Offer Box One -->
+            <div class="col-sm-6 col-lg-4 mb-lg-0 mb-4">
+              <a href="#">
+                <div class="offer-box text-center position-relative">
+                  <div class="offer-inner">
+                    <div class="offer-image position-relative overflow-hidden">
+                      <img
+                        src="https://images.pexels.com/photos/9575444/pexels-photo-9575444.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load"
+                        alt="Offers"
+                        class="img-fluid"
+                      />
+                      <div class="offer-overlay"></div>
+                    </div>
+                    <div class="offer-info">
+                      <div class="offer-info-inner">
+                        <p class="heading-bigger text-capitalize">Sale 30%</p>
+                        <p
+                          class="offer-title-1 text-uppercase font-weight-bold"
+                        >
+                          Don't Miss This Chance
+                        </p>
+                        <button
+                          type="button"
+                          class="btn btn-outline-danger text-uppercase mt-4"
+                        >
+                          Shop Now
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </a>
+            </div>
+            <!-- offer Box Two -->
+            <div
+              class="col-sm-6 col-lg-4 mb-lg-0 mb-4 d-flex flex-column justify-content-between"
+            >
+              <a href="#">
+                <div
+                  class="offer-box text-center position-relative mb-4 mb-sm-0 mb-lg-0"
+                >
+                  <div class="offer-inner">
+                    <div class="offer-image position-relative overflow-hidden">
+                      <img
+                        src="https://images.pexels.com/photos/8473212/pexels-photo-8473212.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load"
+                        alt="Offers"
+                        class="img-fluid"
+                      />
+                      <div class="offer-overlay"></div>
+                    </div>
+                    <div class="offer-info">
+                      <div class="offer-info-inner">
+                        <p class="heading-bigger text-capitalize">Sale 70%</p>
+                        <p
+                          class="offer-title-1 text-uppercase font-weight-bold"
+                        >
+                          Don't Miss This Chance
+                        </p>
+                        <button
+                          type="button"
+                          class="btn btn-outline-danger text-uppercase mt-4"
+                        >
+                          Shop Now
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </a>
+              <a href="#">
+                <div class="offer-box text-center position-relative">
+                  <div class="offer-inner">
+                    <div class="offer-image position-relative overflow-hidden">
+                      <img
+                        src="https://images.pexels.com/photos/3357026/pexels-photo-3357026.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load"
+                        alt="Offers"
+                        class="img-fluid"
+                      />
+                      <div class="offer-overlay"></div>
+                    </div>
+                    <div class="offer-info">
+                      <div class="offer-info-inner">
+                        <p class="heading-bigger text-capitalize">Sale 50%</p>
+                        <p
+                          class="offer-title-1 text-uppercase font-weight-bold"
+                        >
+                          Don't Miss This Chance
+                        </p>
+                        <button
+                          type="button"
+                          class="btn btn-outline-danger text-uppercase mt-4"
+                        >
+                          Shop Now
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </a>
+            </div>
+
+            <!-- offer Box Three -->
+            <div class="col-sm-6 col-lg-4 mb-lg-0 mb-4">
+              <a href="#">
+                <div class="offer-box text-center position-relative">
+                  <div class="offer-inner">
+                    <div class="offer-image position-relative overflow-hidden">
+                      <img
+                        src="https://images.pexels.com/photos/6489667/pexels-photo-6489667.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load"
+                        alt="Offers"
+                        class="img-fluid"
+                      />
+                      <div class="offer-overlay"></div>
+                    </div>
+                    <div class="offer-info">
+                      <div class="offer-info-inner">
+                        <p class="heading-bigger text-capitalize">Sale 25%</p>
+                        <p
+                          class="offer-title-1 text-uppercase font-weight-bold"
+                        >
+                          Don't Miss This Chance
+                        </p>
+                        <button
+                          type="button"
+                          class="btn btn-outline-danger text-uppercase mt-4"
+                        >
+                          Shop Now
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Products section -->
+    <section id="products" class="products">
+      <div class="container">
+        <div class="row">
+          <div class="col-sm-12">
+            <div class="headline text-center mb-5">
+              <h2 class="pb-3 position-relative d-inline-block">
+                FEATURED PRODUCTS
+              </h2>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-sm-6 col-lg-4">
+            <a href="#" class="d-block text-center mb-4">
+              <div class="product-list">
+                <div class="product-image position-relative">
+                  <span class="sale">Sale</span>
+                  <img
+                    src="https://images.pexels.com/photos/1571673/pexels-photo-1571673.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load"
+                    alt="products"
+                    class="img-fluid product-image-first"
+                  />
+                  <img
+                    src="https://images.pexels.com/photos/13145853/pexels-photo-13145853.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load"
+                    alt="products"
+                    class="img-fluid product-image-secondary"
+                  />
+                </div>
+                <div class="product-name pt-3">
+                  <h3 class="text-capitalize">
+                    Winter Long Sleeve Black White
+                  </h3>
+                  <p class="mb-0 amount">$400.00 <del>$580.00</del></p>
+                  <div class="py-1">
+                    <span class="ti-star"></span>
+                    <span class="ti-star"></span>
+                    <span class="ti-star"></span>
+                    <span class="ti-star"></span>
+                    <span class="ti-star"></span>
+                  </div>
+                  <button type="button" class="add_to_Card">ADD TO CARD</button>
+                </div>
+              </div>
+            </a>
+          </div>
+          <div class="col-sm-6 col-lg-4">
+            <a href="#" class="d-block text-center mb-4">
+              <div class="product-list">
+                <div class="product-image position-relative">
+                  <img
+                    src="https://images.pexels.com/photos/12861655/pexels-photo-12861655.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load"
+                    alt="products"
+                    class="img-fluid product-image-first"
+                  />
+                  <img
+                    src="https://images.pexels.com/photos/13095904/pexels-photo-13095904.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load"
+                    alt="products"
+                    class="img-fluid product-image-secondary"
+                  />
+                </div>
+                <div class="product-name pt-3">
+                  <h3 class="text-capitalize">women totes lady handbag</h3>
+                  <p class="mb-0 amount">$300.00</p>
+                  <div class="py-1">
+                    <span class="ti-star active"></span>
+                    <span class="ti-star active"></span>
+                    <span class="ti-star active"></span>
+                    <span class="ti-star"></span>
+                    <span class="ti-star"></span>
+                  </div>
+                  <button type="button" class="add_to_Card">ADD TO CARD</button>
+                </div>
+              </div>
+            </a>
+          </div>
+          <div class="col-sm-6 col-lg-4">
+            <a href="#" class="d-block text-center mb-4">
+              <div class="product-list">
+                <div class="product-image position-relative">
+                  <img
+                    src="https://images.pexels.com/photos/4156998/pexels-photo-4156998.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load"
+                    alt="products"
+                    class="img-fluid product-image-first"
+                  />
+                  <img
+                    src="https://images.pexels.com/photos/13012302/pexels-photo-13012302.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load"
+                    alt="products"
+                    class="img-fluid product-image-secondary"
+                  />
+                </div>
+                <div class="product-name pt-3">
+                  <h3 class="text-capitalize">Lace water soluble sexy dress</h3>
+                  <p class="mb-0 amount">$600.00</p>
+                  <div class="py-1">
+                    <span class="ti-star active"></span>
+                    <span class="ti-star active"></span>
+                    <span class="ti-star active"></span>
+                    <span class="ti-star active"></span>
+                    <span class="ti-star active"></span>
+                  </div>
+                  <button type="button" class="add_to_Card">ADD TO CARD</button>
+                </div>
+              </div>
+            </a>
+          </div>
+          <div class="col-sm-6 col-lg-4">
+            <a href="#" class="d-block text-center mb-4">
+              <div class="product-list">
+                <div class="product-image position-relative">
+                  <img
+                    src="https://images.pexels.com/photos/13095139/pexels-photo-13095139.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load"
+                    alt="products"
+                    class="img-fluid product-image-first"
+                  />
+                  <img
+                    src="https://images.pexels.com/photos/12671738/pexels-photo-12671738.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load"
+                    alt="products"
+                    class="img-fluid product-image-secondary"
+                  />
+                </div>
+                <div class="product-name pt-3">
+                  <h3 class="text-capitalize">Elegant Formal Party Dress</h3>
+                  <p class="mb-0 amount">$500.00</p>
+                  <div class="py-1">
+                    <span class="ti-star active"></span>
+                    <span class="ti-star active"></span>
+                    <span class="ti-star"></span>
+                    <span class="ti-star"></span>
+                    <span class="ti-star"></span>
+                  </div>
+                  <button type="button" class="add_to_Card">ADD TO CARD</button>
+                </div>
+              </div>
+            </a>
+          </div>
+          <div class="col-sm-6 col-lg-4">
+            <a href="#" class="d-block text-center mb-4">
+              <div class="product-list">
+                <div class="product-image position-relative">
+                  <span class="sale">Sale</span>
+                  <img
+                    src="https://images.pexels.com/photos/6155253/pexels-photo-6155253.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load"
+                    alt="products"
+                    class="img-fluid product-image-first"
+                  />
+                  <img
+                    src="https://images.pexels.com/photos/12185664/pexels-photo-12185664.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load"
+                    alt="products"
+                    class="img-fluid product-image-secondary"
+                  />
+                </div>
+                <div class="product-name pt-3">
+                  <h3 class="text-capitalize">Mini Dress Ladies Sleeve</h3>
+                  <p class="mb-0 amount">$600.00</p>
+                  <div class="py-1">
+                    <span class="ti-star active"></span>
+                    <span class="ti-star active"></span>
+                    <span class="ti-star active"></span>
+                    <span class="ti-star"></span>
+                    <span class="ti-star"></span>
+                  </div>
+                  <button type="button" class="add_to_Card">ADD TO CARD</button>
+                </div>
+              </div>
+            </a>
+          </div>
+          <div class="col-sm-6 col-lg-4">
+            <a href="#" class="d-block text-center mb-4">
+              <div class="product-list">
+                <div class="product-image position-relative">
+                  <img
+                    src="https://images.pexels.com/photos/12400863/pexels-photo-12400863.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load"
+                    alt="products"
+                    class="img-fluid product-image-first"
+                  />
+                  <img
+                    src="ahttps://images.pexels.com/photos/12577819/pexels-photo-12577819.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load"
+                    alt="products"
+                    class="img-fluid product-image-secondary"
+                  />
+                </div>
+                <div class="product-name pt-3">
+                  <h3 class="text-capitalize">
+                    Winter Long Sleeve Black White
+                  </h3>
+                  <p class="mb-0 amount">$500.00</p>
+                  <div class="py-1">
+                    <span class="ti-star active"></span>
+                    <span class="ti-star active"></span>
+                    <span class="ti-star active"></span>
+                    <span class="ti-star active"></span>
+                    <span class="ti-star"></span>
+                  </div>
+                  <button type="button" class="add_to_Card">ADD TO CARD</button>
+                </div>
+              </div>
+            </a>
+          </div>
+        </div>
+
+        <!-- UP to 75% Off -->
+        <div class="overflow-hidden my-5">
+          <div class="row">
+            <div class="col-sm-12 up_to_off">
+              <img
+                src="https://images.pexels.com/photos/12586694/pexels-photo-12586694.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load"
+                alt="offers"
+                class="img-fluid w-100"
+                style="height: 200px; object-fit: cover"
+              />
+              <div class="up_to_content">
+                <h2>UP TO 75% OFF SPRINGSALE!</h2>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Special section -->
+    <section id="special" class="special">
+      <div class="container">
+        <div class="row">
+          <div class="col-sm-12">
+            <div class="headline text-center mb-5">
+              <h2 class="pb-3 position-relative d-inline-block">SUMMER SALE</h2>
+            </div>
+          </div>
+
+          <div class="col-sm-12 col-lg-7 text-center text-lg-start">
+            <div class="countdown-container">
+              <h2 class="text-uppercase">Sexy Women Floral Embroidery</h2>
+              <p class="my-4">
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
+                eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
+                enim ad minim veniam, quis nostrud exercitation ullamco laboris
+                nisi ut aliquip ex ea commodo consequat.
+              </p>
+              <ul class="list-unstyled countdown-counter">
+                <li><span class="fs-1 d-block" id="days">00</span> Days</li>
+                <li><span class="fs-1 d-block" id="hours">00</span> Hr</li>
+                <li><span class="fs-1 d-block" id="min">00</span> Min</li>
+                <li><span class="fs-1 d-block" id="sec">00</span> Sec</li>
+              </ul>
+              <span class="countdown-price h3 d-block mb-4"
+                >$420.00 <del>$670.00</del></span
+              >
+              <button type="button" class="btn btn-danger">ADD TO CART</button>
+            </div>
+          </div>
+          <div class="col-sm-12 col-lg-5">
+            <div class="special-img position-relative">
+              <span class="">Sale</span>
+              <img
+                src="https://images.pexels.com/photos/12502186/pexels-photo-12502186.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load"
+                class="img-fluid"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Testimonial section -->
+    <section id="testimonial" class="testimonial">
+      <div class="container">
+        <div class="row">
+          <div class="col-sm-12">
+            <div class="headline text-center mb-5">
+              <h2 class="pb-3 position-relative d-inline-block">
+                Testimonials
+              </h2>
+            </div>
+          </div>
+          <div class="col-sm-12 col-lg-8 offset-lg-2 text-center">
+            <div
+              id="carouselExampleIndicatorsTwo"
+              class="carousel slide"
+              data-bs-ride="carousel"
+            >
+              <div class="carousel-indicators">
+                <button
+                  type="button"
+                  data-bs-target="#carouselExampleIndicatorsTwo"
+                  data-bs-slide-to="0"
+                  class="active"
+                  aria-current="true"
+                  aria-label="Slide 1"
+                ></button>
+                <button
+                  type="button"
+                  data-bs-target="#carouselExampleIndicatorsTwo"
+                  data-bs-slide-to="1"
+                  aria-label="Slide 2"
+                ></button>
+              </div>
+              <div class="carousel-inner">
+                <div class="carousel-item active">
+                  <div class="testimonial-wrapper">
+                    <div class="row">
+                      <div class="col-sm-12">
+                        <img
+                          src="https://images.pexels.com/photos/5411688/pexels-photo-5411688.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load"
+                          alt=""
+                          class="img-fluid"
+                        />
+                      </div>
+                      <div class="username">
+                        <h3>Martin Johe, Co-Founder / CEO</h3>
+                        <span>Fastcompany ltd.</span>
+                        <p>
+                          Lorem ipsum dolor sit amet, consectetur adipisicing
+                          elit, sed do eiusmod tempor incididunt ut labore et
+                          dolore magna aliqua. Ut enim ad minim veniam, quis
+                          nostrud exercitation ullamco laboris nisi ut aliquip
+                          ex ea commodo consequat.
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="carousel-item">
+                  <div class="testimonial-wrapper">
+                    <div class="row">
+                      <div class="col-sm-12">
+                        <img
+                          src="https://images.pexels.com/photos/12487311/pexels-photo-12487311.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load"
+                          alt=""
+                          class="img-fluid"
+                        />
+                      </div>
+                      <div class="username">
+                        <h3>Martin Johe, Co-Founder / CEO</h3>
+                        <span>Fastcompany ltd.</span>
+                        <p>
+                          Lorem ipsum dolor sit amet, consectetur adipisicing
+                          elit, sed do eiusmod tempor incididunt ut labore et
+                          dolore magna aliqua. Ut enim ad minim veniam, quis
+                          nostrud exercitation ullamco laboris nisi ut aliquip
+                          ex ea commodo consequat.
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <button
+                class="carousel-control-prev"
+                type="button"
+                data-bs-target="#carouselExampleIndicatorsTwo"
+                data-bs-slide="prev"
+              >
+                <span class="carousel-control-prev-icon" aria-hidden="true">
+                  <span class="ti-angle-left slider-icon"></span>
+                </span>
+                <span class="visually-hidden">Previous</span>
+              </button>
+              <button
+                class="carousel-control-next"
+                type="button"
+                data-bs-target="#carouselExampleIndicatorsTwo"
+                data-bs-slide="next"
+              >
+                <span class="carousel-control-next-icon" aria-hidden="true">
+                  <span class="ti-angle-right slider-icon"></span>
+                </span>
+                <span class="visually-hidden">Next</span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact section -->
+    <section id="contact">
+      <div class="contact">
+        <div class="container">
+          <div class="mb-5 text-center">
+            <h5>Let’s Start a Conversation!</h5>
+            <h2 class="fw-bold">Contact Us</h2>
+          </div>
+
+          <div class="row">
+            <div class="col-lg-5 col-md-5">
+              <h4 class="fw-bold">Contact Info</h4>
+              <ul class="info list-unstyled">
+                <li class="d-flex align-items-center">
+                  <span class="pe-3 ti-location-pin fs-5"></span>
+                  <p><a href="">Lorem ipsum dolor sit amet, consectetur.</a></p>
+                </li>
+                <li class="d-flex align-items-center">
+                  <span class="pe-3 ti-mobile fs-5"></span>
+                  <p><a href="">+91 999-999-9999</a></p>
+                </li>
+                <li class="d-flex align-items-center">
+                  <span class="pe-3 ti-envelope fs-5"></span>
+                  <p><a href="">Info@eshop.in</a></p>
+                </li>
+              </ul>
+            </div>
+            <div class="col-lg-7 col-md-7 pt-lg-0 pt-md-0 pt-4">
+              <form>
+                <div class="row">
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <input
+                        type="text"
+                        class="form-control"
+                        name="name"
+                        id="name"
+                        placeholder="Your name"
+                      />
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <input
+                        type="email"
+                        class="form-control"
+                        name="email"
+                        id="email"
+                        placeholder="Email address"
+                      />
+                    </div>
+                  </div>
+                  <div class="col-md-12">
+                    <div class="form-group">
+                      <input
+                        class="textarea"
+                        name="message"
+                        cols="30"
+                        rows="4"
+                        id="message"
+                        placeholder="Enter your message"
+                      />
+                    </div>
+                  </div>
+                  <div class="col-md-12">
+                    <button class="btn btn-danger">
+                      <span class="ti-rocket pe-2 fs-5"></span> Send Message
+                    </button>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- Footer section -->
+    <footer>
+      <div class="p-3 copyright">
+        <div class="container">
+          <div class="row align-items-center">
+            <div class="col-12 col-lg-6 p-1 p-lg-3 text-center text-lg-start">
+              <p class="my-0">
+                Copyright © 2022 <a href="#">E-SHOP</a> All Rights Reserved
+              </p>
+            </div>
+            <div class="col-12 col-lg-6 p-1 p-lg-3 text-center text-lg-end">
+              <p>Designed by <a href="#" target=" _blank">SOMPAL</a></p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Scroll Backt To Top -->
+    
+      <a href="#home"><span class="ti-arrow-up fs-4 text-white"></span></a>
+    </div>
+    <!-- Bootstrap 5 js -->
+
+    <script>
+      // Special Countdown
+      let daysItem = document.querySelector("#days");
+      let hoursItem = document.querySelector("#hours");
+      let minItem = document.querySelector("#min");
+      let secItem = document.querySelector("#sec");
+
+      let countDown = () => {
+        let futureDate = new Date("15 August 2022");
+        let currentDate = new Date();
+        let myDate = futureDate - currentDate;
+
+        let days = Math.floor(myDate / 1000 / 60 / 60 / 24);
+        let hours = Math.floor(myDate / 1000 / 60 / 60) % 24;
+        let min = Math.floor(myDate / 1000 / 60) % 60;
+        let sec = Math.floor(myDate / 1000) % 60;
+
+        daysItem.innerHTML = days;
+        hoursItem.innerHTML = hours;
+        minItem.innerHTML = min;
+        secItem.innerHTML = sec;
+      };
+
+      countDown();
+
+      setInterval(countDown, 1000);
+
+
+      // nav hide
+      let navBar = document.querySelectorAll(".nav-link");
+      let navCollapse = document.querySelector(".navbar-collapse.collapse");
+      navBar.forEach(function (a) {
+        a.addEventListener("click", function () {
+          navCollapse.classList.remove("show");
+        });
+      });
+    </script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>
