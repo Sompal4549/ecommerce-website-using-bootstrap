@@ -1331,8 +1331,9 @@
       let secItem = document.querySelector("#sec");
 
       let countDown = () => {
-        let futureDate = new Date(`01 January {Date.getFullYear()+1}`);
         let currentDate = new Date();
+        let futureDate = new Date(`01 January ${currentDate.getFullYear()+1}`);
+        console.log(futureDate)
         let myDate = futureDate - currentDate;
 
         let days = Math.floor(myDate / 1000 / 60 / 60 / 24);
